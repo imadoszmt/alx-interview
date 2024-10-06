@@ -1,3 +1,11 @@
+#!/user/bin/python3
+"""
+This generates a list of lists of integers representing Pascal's Triangle
+up to a specified number of rows n. Pascal's Triangle is a triangular array
+of numbers where each number is the sum of the two numbers directly above it.
+"""
+
+
 def pascal_triangle(n):
     """
     Returns a list of lists of integers representing the Pascal’s
