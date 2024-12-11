@@ -3,17 +3,21 @@
 Prime Game Module
 """
 
+
 def isWinner(x, nums):
     """
     Determines the winner of the Prime Game.
 
     Args:
         x (int): The number of rounds.
-        nums (list): An array of integers where each integer represents the value of n for a round.
+        nums (list): An array of integers where each integer represents
+        the value of n for a round.
 
     Returns:
-        str: The name of the player that won the most rounds. If the winner cannot be determined, returns None.
+        str: The name of the player that won the most rounds. If the winner
+        cannot be determined, returns None.
     """
+
     def sieve(n):
         """
         Generates all prime numbers up to n using the Sieve of Eratosthenes.
@@ -50,6 +54,7 @@ def isWinner(x, nums):
         return "Ben"
     else:
         return None
+
 
 if __name__ == "__main__":
     isWinner(x, nums)
