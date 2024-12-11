@@ -18,42 +18,50 @@ def isWinner(x, nums):
         cannot be determined, returns None.
     """
 
-    def sieve(n):
+    def count_primes(n):
         """
-        Generates all prime numbers up to n using the Sieve of Eratosthenes.
+        Counts the number of prime numbers up to n using the Sieve of
+        Eratosthenes.
 
         Args:
-            n (int): The upper limit for prime generation.
+            n (int): The upper limit for prime counting.
 
         Returns:
-            list: A list of prime numbers up to n.
+            int: The number of prime numbers up to n.
         """
         if n < 2:
-            return []
+            return 0
         sieve = [True] * (n + 1)
         sieve[0] = sieve[1] = False
         for current in range(2, int(n**0.5) + 1):
             if sieve[current]:
                 for multiple in range(current * current, n + 1, current):
                     sieve[multiple] = False
-        return [num for num, is_prime in enumerate(sieve) if is_prime]
+        return sum(sieve)
+
+    # Handle edge cases
+    if x <= 0 or not nums:
+        return None  # No rounds or no values in nums
 
     maria_wins = 0
     ben_wins = 0
 
     for n in nums:
-        primes = sieve(n)
-        if len(primes) % 2 == 0:
-            ben_wins += 1
+        prime_count = count_primes(n)
+        if prime_count == 0:
+            ben_wins += 1  # No primes available, Ben wins by default
+        elif prime_count % 2 == 0:
+            ben_wins += 1  # Even number of primes, Ben wins
         else:
-            maria_wins += 1
+            maria_wins += 1  # Odd number of primes, Maria wins
 
+    # Determine the overall winner
     if maria_wins > ben_wins:
         return "Maria"
     elif ben_wins > maria_wins:
         return "Ben"
     else:
-        return None
+        return None  # Tie or no clear winner
 
 
 if __name__ == "__main__":
